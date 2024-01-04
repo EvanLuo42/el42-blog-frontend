@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import HomeInfo from '@/components/HomeInfo.vue';
 import PostEntry from '@/components/PostEntry.vue';
-
 </script>
 
 <template>
