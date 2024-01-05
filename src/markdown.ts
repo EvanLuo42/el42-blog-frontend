@@ -1,4 +1,5 @@
-import matter from "gray-matter"
+import matter from 'gray-matter'
+import markdownit from 'markdown-it'
 
 export function getRawPosts() {
   const files = import.meta.glob('./../public/posts/*.md', { as: 'raw' })
@@ -13,4 +14,27 @@ export function getRawPosts() {
 
 function sortPostsByDate(postA: string, postB: string) {
   return new Date(matter(postB).data.date).getTime() - new Date(matter(postA).data.date).getTime()
+}
+
+type Post = {
+  title: string,
+  date: string,
+  content: string
+}
+
+const month = ["January", "February", "March", "April", "May", "June", "July", 
+  "August", "September", "October", "November", "December"]
+
+function handleRawPosts(rawPosts: string[]): Post[] {
+  return rawPosts.map((rawPost) => {
+    const meta = matter(rawPost)
+    const date = new Date(meta.data.date)
+    const md = markdownit()
+    
+    return { 
+      title: meta.data.title,
+      date: `${month[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()}`,
+      content: meta.content,
+    }
+  })
 }
