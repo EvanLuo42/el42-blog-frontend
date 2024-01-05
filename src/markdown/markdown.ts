@@ -67,7 +67,7 @@ function generateToc(headings: NodeListOf<Element>): TreeNode<Toc>[] {
           .push(new TreeNode(headingValue))
         break
     }
-
   })
-  return []
+  nodes.push(currentNode!)
+  return nodes
 }
