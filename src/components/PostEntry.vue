@@ -7,6 +7,8 @@ type PostEntry = {
   author: string
 }
 
+const postRoot = '/post/'
+
 defineProps<PostEntry>()
 </script>
 
@@ -19,9 +21,9 @@ defineProps<PostEntry>()
       {{ description }}
     </div>
     <footer class="entry-footer">
-      <span>{{ date }}</span> " · " {{ author }}
+      <span>{{ date }}</span> · {{ author }}
     </footer>
-    <RouterLink class="entry-link" :to="link"></RouterLink>
+    <RouterLink class="entry-link" :to="postRoot + link"></RouterLink>
   </article>
 </template>
 

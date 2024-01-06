@@ -2,12 +2,9 @@
 import { SocialPlatforms, homeInfo } from '@/config'
 import MastodonIcon from '@/components/icons/MastodonIcon.vue'
 
-function socialIcon(socialPlatform: SocialPlatforms) {
-  switch (socialPlatform) {
-    case SocialPlatforms.Mastodon:
-      return MastodonIcon
-  }
-}
+const socialIcon = new Map([
+  [SocialPlatforms.Mastodon, MastodonIcon]
+])
 </script>
 
 <template>
@@ -23,7 +20,7 @@ function socialIcon(socialPlatform: SocialPlatforms) {
           :key="social.platform"
           :href="social.url"
         >
-          <component :is="socialIcon(social.platform)"></component>
+          <component :is="socialIcon.get(social.platform)"></component>
         </a>
       </div>
     </footer>
